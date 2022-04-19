@@ -8,6 +8,7 @@ class Post(BaseModel):
 
 
 app = FastAPI()
+my_posts = []
 
 
 @app.get("/")
@@ -21,6 +22,6 @@ def get_posts():
 
 
 @app.post("/createposts")
-def create_posts(new_post: Post):
+def create_posts(post: Post):
 
-    return {"message": "post created"}
+    return {post.dict}
