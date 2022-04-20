@@ -29,23 +29,7 @@ class Post(BaseModel):
     rating: Optional[int] = None
 
 
-def find_post(id):
-    for p in my_posts:
-        if p["id"] == id:
-            return p
-
-
-def find_index(id):
-    for i, x in enumerate(my_posts):
-        if x["id"] == id:
-            return i
-
-
 app = FastAPI()
-
-my_posts = [{"title": "TITLE A", "content": " content of A", "id": 1},
-            {"title": "TITLE B", "content": " content of B", "id": 2},
-            {"title": "TITLE C", "content": " content of C", "id": 3}]
 
 
 @app.get("/")
