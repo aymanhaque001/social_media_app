@@ -13,7 +13,9 @@ from sqlalchemy.orm import Session
 from . import models, utils
 from .database import engine, SessionLocal, get_db
 from app import schemas
-from .routers import posts, users
+from .routers import posts, users, auth
+
+from . import oauth2
 
 
 # The line of code below creates a table initialized in models.py for sqlalchemy if a table does not exist
@@ -25,6 +27,7 @@ app = FastAPI()
 
 app.include_router(posts.router)
 app.include_router(users.router)
+app.include_router(auth.router)
 
 
 @app.get("/")

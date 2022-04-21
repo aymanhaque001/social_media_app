@@ -52,3 +52,12 @@ class User(BaseModel):
 
 class UserResponse(User):
     pass
+
+
+class UserLogin(BaseModel):
+    email: EmailStr
+    password: str
+
+    # class Config:
+    #     # this is needed for converting orm model to pydantic response
+    #     orm_mode = True
