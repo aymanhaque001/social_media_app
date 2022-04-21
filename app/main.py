@@ -24,10 +24,10 @@ app = FastAPI()
 
 @app.get("/")
 def root():
-    return {"message": " Hello Ayman "}
+    return {"message": " This is a social media backend Project "}
 
 
-@app.get("/posts", )
+@app.get("/posts", response_model=List[schemas.PostResponse])
 def get_posts(db: Session = Depends(get_db)):
 
     posts = db. query(models.Post).all()
@@ -38,7 +38,7 @@ def get_posts(db: Session = Depends(get_db)):
     return posts
 
 
-@app.post("/posts", status_code=status.HTTP_201_CREATED)
+@app.post("/posts", status_code=status.HTTP_201_CREATED, response_model=schemas.PostResponse)
 def create_posts(post: schemas.Postcreate, db: Session = Depends(get_db)):
 
     # Below code is SQL
@@ -60,7 +60,7 @@ def create_posts(post: schemas.Postcreate, db: Session = Depends(get_db)):
     return newpost
 
 
-@app.get("/posts/{id}")
+@app.get("/posts/{id}", response_model=schemas.PostResponse)
 def get_posts(id: int, response: Response, db: Session = Depends(get_db)):
     # # Below is sql code (commented)
     # cursor.execute(
@@ -93,7 +93,7 @@ def delete_post(id: int, db: Session = Depends(get_db)):
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 
-@ app.put("/posts/{id}")
+@ app.put("/posts/{id}", response_model=schemas.PostResponse)
 def update_post(id: int, post: Postcreate, db: Session = Depends(get_db)):
 
     # # SQL

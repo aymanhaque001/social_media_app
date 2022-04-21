@@ -12,6 +12,9 @@ class Postbase(BaseModel):
     content: str
     published: bool = True
 
+    class Config:
+        orm_mode = True
+
 
 class Postcreate(Postbase):
     pass
@@ -20,3 +23,9 @@ class Postcreate(Postbase):
 class Post(Postbase):
     id: int
     created_at: datetime
+
+
+class PostResponse(Postbase):
+    id: str
+    created_at: datetime
+    pass
